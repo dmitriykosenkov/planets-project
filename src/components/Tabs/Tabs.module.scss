@@ -1,0 +1,49 @@
+.mainSectionTabsBlock {
+   justify-self: end;
+   width: 350px;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+   @media (max-width: 768px) {
+      align-self: center;
+      width: 281px;
+   }
+   @media (max-width: 640px) {
+      // order: -1;
+      display: none;
+      justify-self: start;
+      padding: 20px 0;
+      flex-direction: row;
+      justify-content: space-between;
+   }
+}
+.mainSectionTabsItem {
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   padding: 12px 28px;
+// background-color: transparent;
+   font-size: 12px;
+   font-weight: 700;
+   line-height: 25px;
+   letter-spacing: 2.571px;
+   text-transform: uppercase;
+   transition: background-color ease 0.3s;
+   span {
+      margin-right: 28px;
+      opacity: 0.5;
+   }
+   @media (hover: hover) and (pointer: fine) {
+      &:hover {
+         // border: 1px solid rgba(216, 216, 216, 0.2);
+         background-color: rgba(216, 216, 216, 0.2);
+      }
+   }
+   @media (max-width: 768px) {
+      padding: 8px 20px;
+   }
+   @media (max-width: 640px) {
+      display: none;
+   }
+}
+.mainSectionTabsItemActive {
+   background-color: #6d2ed5;
+}
