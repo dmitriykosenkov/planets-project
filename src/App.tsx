@@ -28,33 +28,60 @@ const tabs = [
 function App() {
    const { planets } = useAppSelector((state) => state.planet);
    const [activePlanet, setActivePlanet] = useState("Mercury");
+   const [activeTab, setActiveTab] = useState(0);
    const [singlePlanet, setSinglePlanet] = useState<PlanetType | null>(null);
+
    useEffect(() => {
-      console.log(activePlanet);
-      planets.find(planet => planet.name === activePlanet ? setSinglePlanet(planet) : null)
-      // setSinglePlanet(planets[2]);
+      console.log(singlePlanet);
+      planets.find((planet) =>
+         planet.name === activePlanet ? setSinglePlanet(planet) : null
+      );
+      setActiveTab(0)
    }, [activePlanet]);
+   
    return (
       <div className={s.wrapper}>
-         <Header planets={planets} setActivePlanet={setActivePlanet} activePlanet={activePlanet} />
+         <Header
+            planets={planets}
+            setActivePlanet={setActivePlanet}
+            activePlanet={activePlanet}
+         />
 
          <section className={s.mainSection}>
-            <MobileTabs tabs={tabs} mainColor={singlePlanet?.mainColor}/>
+            <MobileTabs
+               setActiveTab={setActiveTab}
+               activeTab={activeTab}
+               tabs={tabs}
+               mainColor={singlePlanet?.mainColor}
+            />
             <div className={s.mainSectionContainer}>
                <div className={s.mainSectionImageBlock}>
-                  <img
-                     src={singlePlanet?.images.planet}
-                     alt={singlePlanet?.name}
-                  />
+                  {singlePlanet ? (
+                     <img
+                        src={
+                           process.env.PUBLIC_URL + singlePlanet.images.planet
+                        }
+                        alt={singlePlanet?.name}
+                     />
+                  ) : (
+                     "Loading"
+                  )}
                </div>
-               <InfoBlock singlePlanet={singlePlanet} />
-               <Tabs tabs={tabs} />
+               <InfoBlock activeTab={activeTab} activePlanet={activePlanet} singlePlanet={singlePlanet} />
+               <Tabs
+                  setActiveTab={setActiveTab}
+                  activeTab={activeTab}
+                  tabs={tabs}
+                  mainColor={singlePlanet?.mainColor}
+               />
                <ul className={s.mainSectionStatsBlock}>
                   <li className={s.mainSectionStatsItem}>
                      <div className={s.mainSectionStatsItemSubtitle}>
                         ROTATION TIME
                      </div>
-                     <h4 className={s.mainSectionStatsItemTitle}>{singlePlanet?.rotation}</h4>
+                     <h4 className={s.mainSectionStatsItemTitle}>
+                        {singlePlanet?.rotation}
+                     </h4>
                   </li>
                   <li className={s.mainSectionStatsItem}>
                      <div className={s.mainSectionStatsItemSubtitle}>
@@ -68,13 +95,17 @@ function App() {
                      <div className={s.mainSectionStatsItemSubtitle}>
                         radius
                      </div>
-                     <h4 className={s.mainSectionStatsItemTitle}>{singlePlanet?.radius}</h4>
+                     <h4 className={s.mainSectionStatsItemTitle}>
+                        {singlePlanet?.radius}
+                     </h4>
                   </li>
                   <li className={s.mainSectionStatsItem}>
                      <div className={s.mainSectionStatsItemSubtitle}>
                         AVERAGE TEMP.
                      </div>
-                     <h4 className={s.mainSectionStatsItemTitle}>{singlePlanet?.temperature}</h4>
+                     <h4 className={s.mainSectionStatsItemTitle}>
+                        {singlePlanet?.temperature}
+                     </h4>
                   </li>
                </ul>
             </div>

@@ -18,6 +18,10 @@ const Header: FC<PropsType> = ({ planets, setActivePlanet, activePlanet }) => {
          document.body.classList.remove(s.lock);
       }
    }, [openMenu]);
+   const onSelectPlanet = (planet: string) => {
+      setActivePlanet(planet)
+      setOpenMenu(false)
+   }
 
    return (
       <header className={s.header}>
@@ -46,7 +50,7 @@ const Header: FC<PropsType> = ({ planets, setActivePlanet, activePlanet }) => {
                         <li
                            className={s.menuItem}
                            style={planet.name === activePlanet ? { borderTopColor: planet.mainColor } : { borderTopColor: "transparent" } }
-                           onClick={() => setActivePlanet(planet.name)}
+                           onClick={() => onSelectPlanet(planet.name)}
                         >
                            <a href="#" className={s.menuLink}>
                               <span
