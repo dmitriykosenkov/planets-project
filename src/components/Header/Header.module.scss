@@ -1,3 +1,73 @@
+.lock {
+   @media (max-width: 640px) {
+      overflow: hidden;
+   }
+}
+.container {
+   max-width: 1400px;
+   padding: 0 24px;
+   margin: 0 auto;
+}
+.header {
+   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 20;
+   height: 85px;
+   &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #070724;
+      z-index: 3;
+   }
+   @media (max-width: 768px) {
+      height: 140px;
+   }
+   @media (max-width: 640px) {
+      height: 68px;
+      &::before {
+         height: 100%;
+      }
+   }
+}
+.headerInner {
+   position: relative;
+   text-transform: uppercase;
+   height: 85px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   @media (max-width: 768px) {
+      height: 100%;
+      flex-direction: column;
+   }
+   @media (max-width: 640px) {
+      flex-direction: row;
+      align-items: center;
+   }
+}
+
+.headerLogo {
+   position: relative;
+   z-index: 5;
+   font-family: "Antonio";
+   font-size: 28px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+   letter-spacing: -1.05px;
+   @media (max-width: 767.98px) {
+      display: flex;
+      align-items: center;
+      height: 70px;
+   }
+}
 .menuBtn {
    display: none;
    width: 24px;
@@ -11,57 +81,29 @@
       height: 3px;
    }
    @media (max-width: 640px) {
+      position: relative;
+      z-index: 5;
       display: flex;
-   }
-}
-.container {
-   max-width: 1400px;
-   padding: 0 24px;
-   margin: 0 auto;
-}
-.header {
-   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-.headerInner {
-   text-transform: uppercase;
-   height: 85px;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   @media (max-width: 768px) {
-      min-height: 140px;
-      flex-direction: column;
-   }
-   @media (max-width: 640px) {
-      flex-direction: row;
-      align-items: center;
-      min-height: 68px;
-   }
-}
-.headerLogo {
-   font-family: "Antonio";
-   font-size: 28px;
-   font-style: normal;
-   font-weight: 400;
-   line-height: normal;
-   letter-spacing: -1.05px;
-   @media (max-width: 767.98px) {
-      display: flex;
-      align-items: center;
-      height: 70px;
    }
 }
 .menuBlock {
    height: 100%;
-   @media (max-width: 767.98px) {
+   // position: relative;
+   // z-index: 5;
+   @media (max-width: 768px) {
       height: 70px;
    }
    @media (max-width: 640px) {
-      display: flex;
-      align-items: center;
+      position: fixed;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
    }
 }
 .menuList {
+   position: relative;
+   z-index: 50;
    height: 100%;
    display: flex;
    gap: 33px;
@@ -72,16 +114,18 @@
       align-items: center;
       gap: 0;
       position: absolute;
-      top: 68px;
+      top: 0;
       left: 0;
       width: 100%;
-      padding: 0 24px;
-      height: calc(100% - 68px);
+      padding: 68px 24px 0;
+      transition: all 0.3s ease 0s;
+      // height: calc(100% - 68px);
+      height: 100%;
    }
 }
 .menuListClose {
    @media (max-width: 640px) {
-      display: none;
+      transform: translate(0, 100%);
    }
 }
 .menuItem {
@@ -119,8 +163,6 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       &:hover {
          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-         // border-bottom: none;
-         // border-bottom: 4px solid #419ebb;
       }
    }
 }

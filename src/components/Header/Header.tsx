@@ -9,7 +9,13 @@ interface PropsType {
 }
 const Header: FC<PropsType> = ({ planets }) => {
    const [openMenu, setOpenMenu] = useState(false);
-   
+   useEffect(() => {
+      if (openMenu) {
+         document.body.classList.add(s.lock)
+      } else {
+         document.body.classList.remove(s.lock)
+      }
+   }, [openMenu]);
 
    return (
       <header className={s.header}>
@@ -18,20 +24,28 @@ const Header: FC<PropsType> = ({ planets }) => {
                <a href="#" className={s.headerLogo}>
                   THE PLANETS
                </a>
+               <button
+                  onClick={() => setOpenMenu((prev) => !prev)}
+                  className={s.menuBtn}
+               >
+                  <span></span>
+                  <span></span>
+                  <span></span>
+               </button>
                <nav className={s.menuBlock}>
-                  <button
-                     onClick={() => setOpenMenu((prev) => !prev)}
-                     className={s.menuBtn}
+                  <ul
+                     className={
+                        openMenu
+                           ? `${s.menuList} ${s.menuListClose}`
+                           : s.menuList
+                     }
                   >
-                     <span></span>
-                     <span></span>
-                     <span></span>
-                  </button>
-                  <ul className={!openMenu ? `${s.menuList} ${s.menuListClose}` : s.menuList}>
                      {planets.map((planet) => (
                         <li className={s.menuItem}>
                            <a href="#" className={s.menuLink}>
-                              <span style={{backgroundColor: planet.menuColor}}></span>
+                              <span
+                                 style={{ backgroundColor: planet.menuColor }}
+                              ></span>
                               {planet.name}
                            </a>
                         </li>

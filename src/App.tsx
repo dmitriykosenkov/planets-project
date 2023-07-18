@@ -14,6 +14,7 @@ const tabs = [
    {id: 2, color: "", mobileTitle: "Surface", desctopTitle: "Surface Geology" },
 ];
 
+
 function App() {
    const {planets} = useAppSelector(state => state.planet)
    useEffect(() => {
@@ -24,7 +25,7 @@ function App() {
          <Header planets={planets} />
 
          <section className={s.mainSection}>
-            <MobileTabs />
+            <MobileTabs tabs={tabs} />
             <div className={s.mainSectionContainer}>
                <div className={s.mainSectionImageBlock}>
                   <img src={planet} alt="mercury" />

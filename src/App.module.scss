@@ -1,3 +1,4 @@
+
 .wrapper {
    min-height: 100vh;
    background-image: url("./assets/background-stars.svg");
@@ -11,15 +12,19 @@
 //  MAIN BLOCK  ===============================================================
 
 .mainSection {
+   @media (max-width: 640px) {
+      padding-top: 68px;
+   }
 }
 .mainSectionContainer {
-   padding: 70px 40px;
+   padding: 85px 40px;
    max-width: 1190px;
    margin: 0 auto;
    display: grid;
    // grid-template: 1fr auto / 1fr 350px;
    @media (max-width: 768px) {
-      grid-template: 1fr auto / 1fr 50%;
+      padding-top: 140px;
+      grid-template: 516px auto / 1fr 50%;
       column-gap: 11px;
    }
    @media (max-width: 640px) {
