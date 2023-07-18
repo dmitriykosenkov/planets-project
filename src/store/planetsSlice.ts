@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface PlanetType {
    "menuColor": string
+   "mainColor": string
    "name": string
    "overview": {
       "content": string
@@ -58,6 +59,7 @@ const initialState: InitialStateType = {
    planets: [
       {
          "menuColor": "#DEF4FC",
+         "mainColor": "#419EBB",
          "name": "Mercury",
          "overview": {
             "content": "Mercury is the smallest planet in the Solar System and the closest to the Sun. Its orbit around the Sun takes 87.97 Earth days, the shortest of all the Sun's planets. Mercury is one of four terrestrial planets in the Solar System, and is a rocky body like Earth.",
@@ -83,6 +85,7 @@ const initialState: InitialStateType = {
       },
       {
          "menuColor": "#F7CC7F",
+         "mainColor": "#EDA249",
 
          "name": "Venus",
          "overview": {
@@ -109,6 +112,7 @@ const initialState: InitialStateType = {
       },
       {
          "menuColor": "#545BFE",
+         "mainColor": "#6f2ed6",
 
          "name": "Earth",
          "overview": {
@@ -135,6 +139,7 @@ const initialState: InitialStateType = {
       },
       {
          "menuColor": "#FF6A45",
+         "mainColor": "#D14C32",
 
          "name": "Mars",
          "overview": {
@@ -161,6 +166,7 @@ const initialState: InitialStateType = {
       },
       {
          "menuColor": "#ECAD7A",
+         "mainColor": "#D83A34",
 
          "name": "Jupiter",
          "overview": {
@@ -187,6 +193,7 @@ const initialState: InitialStateType = {
       },
       {
          "menuColor": "#FCCB6B",
+         "mainColor": "#CD5120",
 
          "name": "Saturn",
          "overview": {
@@ -213,6 +220,7 @@ const initialState: InitialStateType = {
       },
       {
          "menuColor": "#65F0D5",
+         "mainColor": "#1ec2a4",
 
          "name": "Uranus",
          "overview": {
@@ -239,6 +247,7 @@ const initialState: InitialStateType = {
       },
       {
          "menuColor": "#497EFA",
+         "mainColor": "#2d68f0",
 
          "name": "Neptune",
          "overview": {

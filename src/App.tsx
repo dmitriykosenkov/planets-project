@@ -1,80 +1,80 @@
 import s from "./App.module.scss";
 import planet from "./assets/planet-mercury.svg";
 // import planet from "./assets/planet-saturn.svg";
-import iconSource from "./assets/icon-source.svg";
 import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import Tabs from "./components/Tabs/Tabs";
 import MobileTabs from "./components/MobileTabs/MobileTabs";
 import { useAppSelector } from "./store/hooks";
+import { PlanetType } from "./store/planetsSlice";
+import InfoBlock from "./components/InfoBlock/InfoBlock";
 
 const tabs = [
-   {id: 0, color: "", mobileTitle: "OVERVIEW", desctopTitle: "OVERVIEW" },
-   {id: 1, color: "", mobileTitle: "Structure", desctopTitle: "Internal Structure" },
-   {id: 2, color: "", mobileTitle: "Surface", desctopTitle: "Surface Geology" },
+   { id: 0, color: "", mobileTitle: "OVERVIEW", desctopTitle: "OVERVIEW" },
+   {
+      id: 1,
+      color: "",
+      mobileTitle: "Structure",
+      desctopTitle: "Internal Structure",
+   },
+   {
+      id: 2,
+      color: "",
+      mobileTitle: "Surface",
+      desctopTitle: "Surface Geology",
+   },
 ];
 
-
 function App() {
-   const {planets} = useAppSelector(state => state.planet)
+   const { planets } = useAppSelector((state) => state.planet);
+   const [activePlanet, setActivePlanet] = useState("Mercury");
+   const [singlePlanet, setSinglePlanet] = useState<PlanetType | null>(null);
    useEffect(() => {
-      console.log(planets);
-   }, []);
+      console.log(activePlanet);
+      planets.find(planet => planet.name === activePlanet ? setSinglePlanet(planet) : null)
+      // setSinglePlanet(planets[2]);
+   }, [activePlanet]);
    return (
       <div className={s.wrapper}>
-         <Header planets={planets} />
+         <Header planets={planets} setActivePlanet={setActivePlanet} activePlanet={activePlanet} />
 
          <section className={s.mainSection}>
-            <MobileTabs tabs={tabs} />
+            <MobileTabs tabs={tabs} mainColor={singlePlanet?.mainColor}/>
             <div className={s.mainSectionContainer}>
                <div className={s.mainSectionImageBlock}>
-                  <img src={planet} alt="mercury" />
+                  <img
+                     src={singlePlanet?.images.planet}
+                     alt={singlePlanet?.name}
+                  />
                </div>
-               <div className={s.mainSectionInfoBlock}>
-                  <div className={s.mainSectionInfoBlockInner}>
-                     <h3 className={s.mainSectionInfoTitle}>mercury</h3>
-                     <div className={s.mainSectionInfoText}>
-                        Mercury is the smallest planet in the Solar System and
-                        the closest to the Sun. Its orbit around the Sun takes
-                        87.97 Earth days, the shortest of all the Sun's planets.
-                        Mercury is one of four terrestrial planets in the Solar
-                        System, and is a rocky body like Earth.
-                     </div>
-                     <div className={s.mainSectionInfoSource}>
-                        Source :{" "}
-                        <a href="#">
-                           Wikipedia <img src={iconSource} alt="" />
-                        </a>
-                     </div>
-                  </div>
-               </div>
+               <InfoBlock singlePlanet={singlePlanet} />
                <Tabs tabs={tabs} />
                <ul className={s.mainSectionStatsBlock}>
                   <li className={s.mainSectionStatsItem}>
                      <div className={s.mainSectionStatsItemSubtitle}>
                         ROTATION TIME
                      </div>
-                     <h4 className={s.mainSectionStatsItemTitle}>10.8 hours</h4>
+                     <h4 className={s.mainSectionStatsItemTitle}>{singlePlanet?.rotation}</h4>
                   </li>
                   <li className={s.mainSectionStatsItem}>
                      <div className={s.mainSectionStatsItemSubtitle}>
                         REVOLUTION TIME
                      </div>
                      <h4 className={s.mainSectionStatsItemTitle}>
-                        29.46 years
+                        {singlePlanet?.revolution}
                      </h4>
                   </li>
                   <li className={s.mainSectionStatsItem}>
                      <div className={s.mainSectionStatsItemSubtitle}>
                         radius
                      </div>
-                     <h4 className={s.mainSectionStatsItemTitle}>58,232 km</h4>
+                     <h4 className={s.mainSectionStatsItemTitle}>{singlePlanet?.radius}</h4>
                   </li>
                   <li className={s.mainSectionStatsItem}>
                      <div className={s.mainSectionStatsItemSubtitle}>
                         AVERAGE TEMP.
                      </div>
-                     <h4 className={s.mainSectionStatsItemTitle}>-138°c</h4>
+                     <h4 className={s.mainSectionStatsItemTitle}>{singlePlanet?.temperature}</h4>
                   </li>
                </ul>
             </div>

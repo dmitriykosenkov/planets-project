@@ -1,0 +1,42 @@
+.mainSectionInfoBlock {
+   justify-self: end;
+   margin-bottom: 39px;
+   display: grid;
+   @media (max-width: 640px) {
+      text-align: center;
+   }
+}
+.mainSectionInfoBlockInner {
+   max-width: 350px;
+   @media (max-width: 768px) {
+      justify-self: start;
+      // max-width: 300px;
+   }
+   @media (max-width: 640px) {
+      max-width: none;
+   }
+}
+.mainSectionInfoTitle {
+   font-family: "Antonio";
+   font-size: 80px;
+   text-transform: uppercase;
+   margin-bottom: 23px;
+   padding-top: 56px;
+   @media (max-width: 768px) {
+      padding-top: 37px;
+      font-size: 48px;
+   }
+   @media (max-width: 640px) {
+      padding-top: 0;
+      font-size: 48px;
+   }
+}
+.mainSectionInfoText {
+   line-height: 25px;
+   margin-bottom: 24px;
+   @media (max-width: 768px) {
+      font-size: 17px;
+      line-height: 22px;
+      margin-bottom: 32px;
+   }
+}

@@ -6,14 +6,16 @@ import s from "./Header.module.scss";
 
 interface PropsType {
    planets: Array<PlanetType>;
+   activePlanet: string
+   setActivePlanet: (planet: string) => void;
 }
-const Header: FC<PropsType> = ({ planets }) => {
+const Header: FC<PropsType> = ({ planets, setActivePlanet, activePlanet }) => {
    const [openMenu, setOpenMenu] = useState(false);
    useEffect(() => {
       if (openMenu) {
-         document.body.classList.add(s.lock)
+         document.body.classList.add(s.lock);
       } else {
-         document.body.classList.remove(s.lock)
+         document.body.classList.remove(s.lock);
       }
    }, [openMenu]);
 
@@ -41,7 +43,11 @@ const Header: FC<PropsType> = ({ planets }) => {
                      }
                   >
                      {planets.map((planet) => (
-                        <li className={s.menuItem}>
+                        <li
+                           className={s.menuItem}
+                           style={planet.name === activePlanet ? { borderTopColor: planet.mainColor } : { borderTopColor: "transparent" } }
+                           onClick={() => setActivePlanet(planet.name)}
+                        >
                            <a href="#" className={s.menuLink}>
                               <span
                                  style={{ backgroundColor: planet.menuColor }}

@@ -49,48 +49,7 @@
       grid-column: span 1;
    }
 }
-.mainSectionInfoBlock {
-   justify-self: end;
-   margin-bottom: 39px;
-   display: grid;
-   @media (max-width: 640px) {
-      text-align: center;
-   }
-}
-.mainSectionInfoBlockInner {
-   max-width: 350px;
-   @media (max-width: 768px) {
-      justify-self: start;
-      // max-width: 300px;
-   }
-   @media (max-width: 640px) {
-      max-width: none;
-   }
-}
-.mainSectionInfoTitle {
-   font-family: "Antonio";
-   font-size: 80px;
-   text-transform: uppercase;
-   margin-bottom: 23px;
-   padding-top: 56px;
-   @media (max-width: 768px) {
-      padding-top: 37px;
-      font-size: 48px;
-   }
-   @media (max-width: 640px) {
-      padding-top: 0;
-      font-size: 48px;
-   }
-}
-.mainSectionInfoText {
-   line-height: 25px;
-   margin-bottom: 24px;
-   @media (max-width: 768px) {
-      font-size: 11px;
-      line-height: 22px;
-      margin-bottom: 32px;
-   }
-}
+
 
 // ===============
 .mainSectionStatsBlock {
@@ -99,7 +58,7 @@
    display: flex;
    justify-content: space-between;
    @media (max-width: 768px) {
-      margin-top: 0px;
+      margin-top: 27px;
    }
    @media (max-width: 640px) {
       grid-column: span 1;
@@ -148,12 +107,12 @@
 }
 .mainSectionStatsItemSubtitle {
    color: rgba(255, 255, 255, 0.5);
-   font-size: 11px;
+   font-size: 17px;
    font-weight: 700;
    line-height: 25px;
    letter-spacing: 1px;
    @media (max-width: 991px) {
-      font-size: 8px;
+      font-size: 14px;
    }
    @media (max-width: 640px) {
       letter-spacing: -0.72px;
