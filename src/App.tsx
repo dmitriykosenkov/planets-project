@@ -8,6 +8,7 @@ import MobileTabs from "./components/MobileTabs/MobileTabs";
 import { useAppSelector } from "./store/hooks";
 import { PlanetType } from "./store/planetsSlice";
 import InfoBlock from "./components/InfoBlock/InfoBlock";
+import ImageBlock from "./components/ImageBlock/ImageBlock";
 
 const tabs = [
    { id: 0, color: "", mobileTitle: "OVERVIEW", desctopTitle: "OVERVIEW" },
@@ -32,13 +33,12 @@ function App() {
    const [singlePlanet, setSinglePlanet] = useState<PlanetType | null>(null);
 
    useEffect(() => {
-      console.log(singlePlanet);
       planets.find((planet) =>
          planet.name === activePlanet ? setSinglePlanet(planet) : null
       );
-      setActiveTab(0)
+      setActiveTab(0);
    }, [activePlanet]);
-   
+
    return (
       <div className={s.wrapper}>
          <Header
@@ -46,7 +46,6 @@ function App() {
             setActivePlanet={setActivePlanet}
             activePlanet={activePlanet}
          />
-
          <section className={s.mainSection}>
             <MobileTabs
                setActiveTab={setActiveTab}
@@ -55,19 +54,16 @@ function App() {
                mainColor={singlePlanet?.mainColor}
             />
             <div className={s.mainSectionContainer}>
-               <div className={s.mainSectionImageBlock}>
-                  {singlePlanet ? (
-                     <img
-                        src={
-                           process.env.PUBLIC_URL + singlePlanet.images.planet
-                        }
-                        alt={singlePlanet?.name}
-                     />
-                  ) : (
-                     "Loading"
-                  )}
-               </div>
-               <InfoBlock activeTab={activeTab} activePlanet={activePlanet} singlePlanet={singlePlanet} />
+               {singlePlanet && (
+                     <ImageBlock singlePlanet={singlePlanet} activeTab={activeTab} />
+               )}
+               {singlePlanet && (
+                  <InfoBlock
+                     activeTab={activeTab}
+                     activePlanet={activePlanet}
+                     singlePlanet={singlePlanet}
+                  />
+               )}
                <Tabs
                   setActiveTab={setActiveTab}
                   activeTab={activeTab}

@@ -1,34 +1,40 @@
 import { FC, useState, useEffect } from "react";
+import { PlanetType } from "../../store/planetsSlice";
 
 import iconSource from "../../assets/icon-source.svg";
 
 import s from "./InfoBlock.module.scss";
-import { PlanetType } from "../../store/planetsSlice";
 
 interface PropsType {
-   activePlanet: string
+   activePlanet: string;
    activeTab: number;
    // content: string | null
-   singlePlanet?: PlanetType | null
+   singlePlanet: PlanetType;
 }
-const InfoBlock: FC<PropsType> = ({ activeTab, activePlanet, singlePlanet }) => {
-   const [content, setContent] = useState<string | null>(null);
-
+const InfoBlock: FC<PropsType> = ({
+   activeTab,
+   activePlanet,
+   singlePlanet,
+}) => {
+   const [content, setContent] = useState<string>("");
    useEffect(() => {
-      if (singlePlanet && activeTab === 0) {
-         setContent(singlePlanet.overview.content)
-      } else if (singlePlanet && activeTab === 1) {
-         setContent(singlePlanet?.structure.content)
-      } else if (singlePlanet && activeTab === 2) {
-         setContent(singlePlanet?.geology.content)
+      switch (activeTab) {
+         case 0:
+            setContent(singlePlanet.overview.content);
+            break;
+         case 1:
+            setContent(singlePlanet.structure.content);
+            break;
+         case 2:
+            setContent(singlePlanet.geology.content);
+            break;
       }
    }, [activeTab, activePlanet]);
-  
 
    return (
       <div className={s.mainSectionInfoBlock}>
          <div className={s.mainSectionInfoBlockInner}>
-            <h3 className={s.mainSectionInfoTitle}>{activePlanet}</h3>
+            <h3 className={s.mainSectionInfoTitle}>{singlePlanet?.name}</h3>
             <div className={s.mainSectionInfoText}>{content}</div>
             <div className={s.mainSectionInfoSource}>
                Source :{" "}
